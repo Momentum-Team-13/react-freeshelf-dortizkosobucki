@@ -96,7 +96,7 @@ function App() {
 }
 
 function Book({ book }) {
-  const [expanded, setExpanded] = useState(false || null)
+  const [expanded, setExpanded] = useState(false)
   return (
     <div class="card">
       <h3 class="title is-italic">{book.title}</h3>
@@ -108,21 +108,22 @@ function Book({ book }) {
             <img src={book.coverImageUrl}></img>
           </figure>
         </div>
-        <button class="button is-light is-focused is-rounded is-fullwidth is-small is-info is-outlined" onClick={() => setExpanded(!expanded)}>
+        <button aria-expanded="false" aria-controls="extra" class="button is-light is-focused is-rounded is-fullwidth is-small is-info is-outlined" onClick={() => setExpanded(!expanded)}>
           {expanded ? 'Show Less' : 'Show More'}
         </button>
         {expanded ? (
-          <>
-            <h3>URL: <a href="book.url">{book.url}</a></h3>
-            <h3>Publisher: {book.publisher}</h3>
-            <h3>Publication Date: {book.publicationDate}</h3>
+          <div id="extra">
+            < h3 > URL : <a href="book.url">{book.url}</a></h3>
+            {book.publisher ? <h3>Publisher: {book.publisher}</h3> : <></>}
+            {book.publicationDate ? <h3>Publication Date: {book.publicationDate}</h3> : " "}
             <h3>Full Description: {book.detailedDescription}</h3>
-          </>
+          </div>
         ) : (
           ''
-        )}
-      </div>
-    </div>
+        )
+        }
+      </div >
+    </div >
   )
 }
 

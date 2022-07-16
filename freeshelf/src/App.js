@@ -1,9 +1,10 @@
-import './App.css'
 import { useState } from 'react'
 import 'bulma/css/bulma.min.css';
+import Book from "./components/book"
+
 
 function App() {
-  const books = [
+  const bookData = [
     {
       "title": "You Don't Know JS Yet: Getting Started",
       "author": "Kyle Simpson",
@@ -88,45 +89,11 @@ function App() {
   return (
     <>
       <h1 class="title is-large">Elf on the Shelf</h1>
-      {books.map((book, idx) => (
-        <Book book={book} key={idx} />
+      {bookData.map((book, index) => (
+        <Book book={book} key={index} />
       ))}
     </>
   )
 }
 
-function Book({ book }) {
-  const [expanded, setExpanded] = useState(false)
-  return (
-    <div class="card">
-      <h3 class="title is-italic">{book.title}</h3>
-      <div class="content is-small">
-        <h3>Author: {book.author}</h3>
-        <h3>Short Description: {book.shortDescription}</h3>
-        <div class="card-image">
-          <figure class="image is-128x128">
-            <img src={book.coverImageUrl}></img>
-          </figure>
-        </div>
-        <button aria-expanded="false" aria-controls="extra" class="button is-light is-focused is-rounded is-fullwidth is-small is-info is-outlined" onClick={() => setExpanded(!expanded)}>
-          {expanded ? 'Show Less' : 'Show More'}
-        </button>
-        {expanded ? (
-          <div id="extra">
-            < h3 > URL : <a href="book.url">{book.url}</a></h3>
-            {book.publisher ? <h3>Publisher: {book.publisher}</h3> : <></>}
-            {book.publicationDate ? <h3>Publication Date: {book.publicationDate}</h3> : " "}
-            <h3>Full Description: {book.detailedDescription}</h3>
-          </div>
-        ) : (
-          ''
-        )
-        }
-      </div >
-    </div >
-  )
-}
-
 export default App
-
-//if null, then enter placeholder for information 

@@ -13,7 +13,10 @@ function Book({ book }) {
                 <h3>Short Description: {book.shortDescription}</h3>
                 <div class="card-image">
                     <figure class="image is-128x128">
-                        <img src={book.coverImageUrl}></img>
+                        <img
+                            src={book.coverImageUrl}
+                            onError={(e) => e.target.src = "default_book_cover.jpeg "} alt="Book Cover">
+                        </img>
                     </figure>
                 </div>
                 {expanded ? (
